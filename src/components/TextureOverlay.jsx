@@ -1,11 +1,14 @@
 import React, { useState } from 'react';
 import { Volume2, VolumeX, Tv, Sparkles } from 'lucide-react';
+import { sounds } from '../utils/audio';
 
-export default function TextureOverlay({ crtEnabled, setCrtEnabled, grainIntensity = 'normal' }) {
+export default function TextureOverlay({ crtEnabled, setCrtEnabled }) {
   const [soundActive, setSoundActive] = useState(false);
+  const [isMuted, setIsMuted] = useState(false);
 
-  // Subtle web audio white noise generator for authentic vintage tape hiss
+  // Subtle web audio cassette tape hiss
   const toggleHiss = () => {
+    sounds.playClick();
     if (!soundActive) {
       try {
         const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
@@ -20,14 +23,13 @@ export default function TextureOverlay({ crtEnabled, setCrtEnabled, grainIntensi
         whiteNoise.buffer = noiseBuffer;
         whiteNoise.loop = true;
 
-        // Bandpass filter for warm analog cassette tape sound
         const filter = audioCtx.createBiquadFilter();
         filter.type = 'bandpass';
-        filter.frequency.value = 1800;
-        filter.Q.value = 0.7;
+        filter.frequency.value = 1600;
+        filter.Q.value = 0.8;
 
         const gainNode = audioCtx.createGain();
-        gainNode.gain.value = 0.012; // ultra low ambient hiss
+        gainNode.gain.value = 0.012; // ultra soft vintage cassette hiss
 
         whiteNoise.connect(filter);
         filter.connect(gainNode);
@@ -37,7 +39,7 @@ export default function TextureOverlay({ crtEnabled, setCrtEnabled, grainIntensi
         window.__chudTapeHiss = { audioCtx, whiteNoise, gainNode };
         setSoundActive(true);
       } catch (e) {
-        console.log("Audio not allowed yet", e);
+        // audio fail safe
       }
     } else {
       if (window.__chudTapeHiss) {
@@ -49,10 +51,18 @@ export default function TextureOverlay({ crtEnabled, setCrtEnabled, grainIntensi
     }
   };
 
+  const toggleMute = () => {
+    sounds.muted = !isMuted;
+    setIsMuted(!isMuted);
+    if (!isMuted) {
+      sounds.playClick();
+    }
+  };
+
   return (
     <>
       {/* SVG Grain Noise Filter Overlay */}
-      <svg className="fixed inset-0 w-full h-full pointer-events-none opacity-25 z-40" aria-hidden="true">
+      <svg className="fixed inset-0 w-full h-full pointer-events-none opacity-20 z-40" aria-hidden="true">
         <filter id="noiseFilter">
           <feTurbulence type="fractalNoise" baseFrequency="0.85" numOctaves="3" stitchTiles="stitch" />
           <feColorMatrix type="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 0.15 0" />
@@ -66,10 +76,14 @@ export default function TextureOverlay({ crtEnabled, setCrtEnabled, grainIntensi
       )}
 
       {/* Floating Retro Controls HUD at Bottom Right */}
-      <div className="fixed bottom-4 right-4 z-50 flex items-center gap-2 bg-[#111111]/90 text-[#f4f3ef] border border-[#333] px-3 py-1.5 backdrop-blur-md text-[11px] font-mono shadow-2xl">
+      <div className="fixed bottom-4 right-4 z-50 flex items-center gap-2 bg-[#111111]/95 text-[#f4f3ef] border-2 border-black px-3 py-1.5 backdrop-blur-md text-[11px] font-mono shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">
+        {/* CRT toggle */}
         <button
-          onClick={() => setCrtEnabled(!crtEnabled)}
-          className={`flex items-center gap-1.5 px-2 py-1 transition-colors ${
+          onClick={() => {
+            sounds.playClick();
+            setCrtEnabled(!crtEnabled);
+          }}
+          className={`flex items-center gap-1.5 px-2 py-1 transition-all active:scale-95 ${
             crtEnabled ? 'bg-[#f4f3ef] text-black font-bold' : 'hover:text-white text-gray-400'
           }`}
           title="Toggle CRT Scanline Filter"
@@ -80,15 +94,30 @@ export default function TextureOverlay({ crtEnabled, setCrtEnabled, grainIntensi
 
         <span className="text-gray-600">|</span>
 
+        {/* Tape Hiss toggle */}
         <button
           onClick={toggleHiss}
-          className={`flex items-center gap-1.5 px-2 py-1 transition-colors ${
+          className={`flex items-center gap-1.5 px-2 py-1 transition-all active:scale-95 ${
             soundActive ? 'bg-[#f4f3ef] text-black font-bold' : 'hover:text-white text-gray-400'
           }`}
           title="Toggle Ambient Cassette Tape Hiss"
         >
-          {soundActive ? <Volume2 className="w-3.5 h-3.5" /> : <VolumeX className="w-3.5 h-3.5" />}
-          <span>TAPE HISS {soundActive ? 'ON' : 'OFF'}</span>
+          <Volume2 className="w-3.5 h-3.5" />
+          <span>HISS {soundActive ? 'ON' : 'OFF'}</span>
+        </button>
+
+        <span className="text-gray-600">|</span>
+
+        {/* Audio FX mute */}
+        <button
+          onClick={toggleMute}
+          className={`flex items-center gap-1 px-1.5 py-1 transition-all ${
+            isMuted ? 'text-red-400' : 'text-gray-400 hover:text-white'
+          }`}
+          title={isMuted ? 'Unmute Mechanical Sound Effects' : 'Mute Mechanical Sound Effects'}
+        >
+          {isMuted ? <VolumeX className="w-3.5 h-3.5" /> : <Volume2 className="w-3.5 h-3.5" />}
+          <span className="text-[9px]">{isMuted ? 'MUTED' : 'FX ON'}</span>
         </button>
       </div>
     </>

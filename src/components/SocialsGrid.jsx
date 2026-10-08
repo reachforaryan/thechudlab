@@ -9,6 +9,7 @@ import {
   DiscordIcon,
   TelegramIcon,
   YoutubeIcon,
+  InstagramIcon,
   MailIcon
 } from '../assets/vectors';
 import { Copy, Check, ExternalLink } from 'lucide-react';
@@ -18,14 +19,48 @@ export default function SocialsGrid() {
 
   const socials = [
     {
+      key: 'youtube',
+      name: 'YOUTUBE CHANNEL',
+      handle: 'youtube.com/@thechudlab',
+      url: 'https://youtube.com',
+      icon: YoutubeIcon,
+      desc: 'Full build documentation, in-depth hardware & software breakdowns, and tech walkthroughs.',
+      badge: 'MAIN VIDEOS',
+      tag: 'YT-VIDEO//01',
+      primary: true,
+    },
+    {
+      key: 'instagram',
+      name: 'INSTAGRAM & REELS',
+      handle: '@thechudlab',
+      url: 'https://instagram.com',
+      icon: InstagramIcon,
+      desc: 'Short-form demos, behind-the-scenes laboratory moments, and quick engineering experiments.',
+      badge: 'REELS & BTS',
+      tag: 'IG-REEL//02',
+      primary: true,
+    },
+    {
       key: 'github',
-      name: 'GITHUB',
+      name: 'GITHUB CODE REPOS',
       handle: 'github.com/thechudlab',
       url: 'https://github.com',
       icon: GithubIcon,
-      desc: 'Source code repositories, experimental compilers & open algorithms.',
-      badge: 'DEV REPO',
-      tag: 'GIT-HUB//01',
+      desc: 'Open-source repositories, project documentation, schematics, and experimental snippets.',
+      badge: 'OPEN SOURCE',
+      tag: 'GH-REPO//03',
+      primary: true,
+    },
+    {
+      key: 'discord',
+      name: 'DISCORD COMMUNITY',
+      handle: 'discord.gg/thechudlab',
+      url: 'https://discord.com',
+      icon: DiscordIcon,
+      desc: 'Chat directly with me and fellow builders, share your own projects, and pair program.',
+      badge: 'COMMUNITY',
+      tag: 'DSC-SRV//04',
+      primary: false,
     },
     {
       key: 'twitter',
@@ -33,49 +68,21 @@ export default function SocialsGrid() {
       handle: '@thechudlab',
       url: 'https://x.com',
       icon: XTwitterIcon,
-      desc: 'Daily build logs, technical rants, WIP previews & dev memes.',
-      badge: 'TRANSMISSION',
-      tag: 'X-FEED//02',
-    },
-    {
-      key: 'discord',
-      name: 'DISCORD SYNDICATE',
-      handle: 'discord.gg/thechudlab',
-      url: 'https://discord.com',
-      icon: DiscordIcon,
-      desc: 'Live pair programming voice channels, agent hacking & tech discussions.',
-      badge: 'COMMUNITY',
-      tag: 'DSC-SRV//03',
-    },
-    {
-      key: 'telegram',
-      name: 'TELEGRAM SIGNAL',
-      handle: 't.me/thechudlab',
-      url: 'https://telegram.org',
-      icon: TelegramIcon,
-      desc: 'Encrypted flash drop alerts, release binaries & direct hardware news.',
-      badge: 'FLASH DROP',
-      tag: 'TG-CHAN//04',
-    },
-    {
-      key: 'youtube',
-      name: 'YOUTUBE ARCHIVE',
-      handle: 'youtube.com/@thechudlab',
-      url: 'https://youtube.com',
-      icon: YoutubeIcon,
-      desc: 'Deep architecture dives, retro hardware builds & live teardowns.',
-      badge: 'BROADCAST',
-      tag: 'YT-STREAM//05',
+      desc: 'Daily progress updates, late-night screenshots, hot takes, and project teaser threads.',
+      badge: 'UPDATES',
+      tag: 'X-FEED//05',
+      primary: false,
     },
     {
       key: 'email',
-      name: 'DIRECT FREQUENCY',
+      name: 'DIRECT EMAIL',
       handle: 'batakkh@thechudlab.dev',
       url: 'mailto:batakkh@thechudlab.dev',
       icon: MailIcon,
-      desc: 'Direct collaborations, consulting, and private inquiries.',
-      badge: 'PGP/DIRECT',
-      tag: 'MAIL-GATE//06',
+      desc: 'Collaborations, sponsorships, inquiries, or just reaching out directly.',
+      badge: 'INQUIRIES',
+      tag: 'MAIL-BOX//06',
+      primary: false,
     },
   ];
 
@@ -92,13 +99,13 @@ export default function SocialsGrid() {
       <div className="flex flex-col md:flex-row md:items-end justify-between border-b-2 border-black pb-4 mb-8 gap-4">
         <div>
           <div className="flex items-center gap-2 text-xs font-bold text-neutral-500 uppercase tracking-widest">
-            <span>TRACK [02]</span>
+            <span>TRACK [03]</span>
             <span>•</span>
             <SparkleStar className="w-3.5 h-3.5 text-black" />
-            <span>EXTERNAL FREQUENCIES</span>
+            <span>CONNECT WITH ME</span>
           </div>
-          <h2 className="text-3xl sm:text-4xl font-extrabold text-black font-['Syne'] uppercase mt-1 tracking-tight">
-            SOCIAL TRANSMISSIONS // CHANNELS
+          <h2 className="text-3xl sm:text-5xl font-extrabold text-black font-['Instrument_Serif'] uppercase mt-1 tracking-tight">
+            COMMUNITY & SOCIALS
           </h2>
         </div>
 
@@ -107,12 +114,12 @@ export default function SocialsGrid() {
             "stay connected to the signal..."
           </span>
           <span className="text-[11px] text-neutral-500 font-mono uppercase">
-            6 TRANSMISSION RELAYS ACTIVE
+            6 ACTIVE CHANNELS & HUBS
           </span>
         </div>
       </div>
 
-      {/* Streetwear / Y2K Pill Grid Inspired by Ref 2 & 3 */}
+      {/* Grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
         {socials.map((social) => {
           const Icon = social.icon;
@@ -121,9 +128,10 @@ export default function SocialsGrid() {
           return (
             <div
               key={social.key}
-              className="border-2 border-black bg-white p-5 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] transition-all flex flex-col justify-between group relative overflow-hidden"
+              className={`border-2 border-black bg-white p-5 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] transition-all flex flex-col justify-between group relative overflow-hidden ${
+                social.primary ? 'border-2 ring-1 ring-black/10' : ''
+              }`}
             >
-              {/* Top Accent with Streetwear Tag & Icon */}
               <div>
                 <div className="flex items-center justify-between border-b border-black/20 pb-3 mb-3">
                   <div className="flex items-center gap-2">
@@ -174,9 +182,9 @@ export default function SocialsGrid() {
                   href={social.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="px-3 py-1 bg-black text-white text-[11px] font-bold uppercase tracking-wider hover:bg-neutral-800 transition-colors flex items-center gap-1.5"
+                  className="px-3 py-1 bg-black text-white text-[11px] font-bold uppercase tracking-wider hover:bg-neutral-800 transition-colors flex items-center gap-1.5 shadow-[2px_2px_0px_0px_rgba(0,0,0,0.3)]"
                 >
-                  <span>CONNECT</span>
+                  <span>VISIT LINK</span>
                   <ExternalLink className="w-3 h-3" />
                 </a>
               </div>
@@ -185,16 +193,16 @@ export default function SocialsGrid() {
         })}
       </div>
 
-      {/* Streetwear Footer Banner */}
+      {/* Footer Banner */}
       <div className="mt-8 border border-black bg-[#f4f3ee] p-4 flex flex-wrap items-center justify-between gap-4">
         <div className="flex items-center gap-3">
           <CrosshairMatrix rows={1} cols={4} className="text-black" />
           <span className="text-xs font-bold uppercase tracking-wider text-black">
-            SIGNAL ENCRYPTION: 4096-BIT RSA // CHUD PROTOCOL
+            AUTHENTIC SOCIAL CHANNELS // THE CHUD LAB
           </span>
         </div>
         <div className="text-[10px] font-mono text-neutral-600 uppercase">
-          ALL HANDLES OFFICIAL & VERIFIED
+          COMMUNITY FEED & DIRECT DISPATCHES
         </div>
       </div>
 

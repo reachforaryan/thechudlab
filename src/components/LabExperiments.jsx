@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { SparkleStar, SlenderStar, OrbitRing, WarpGrid, CrosshairMatrix } from '../assets/vectors';
-import { Terminal, Cpu, Sparkles, RefreshCw, Code2, Wrench, Zap } from 'lucide-react';
+import { Terminal, Cpu, Sparkles, RefreshCw, Code2, Wrench, Zap, Coffee, WrenchIcon } from 'lucide-react';
 
 export default function LabExperiments() {
   const [activeTab, setActiveTab] = useState('notes');
@@ -8,9 +8,8 @@ export default function LabExperiments() {
   const [asciiOutput, setAsciiOutput] = useState('');
   const canvasRef = useRef(null);
 
-  // Simple retro ASCII generator
+  // Retro ASCII generator
   const generateAscii = (text) => {
-    const chars = ' .:coCO8@#*+';
     const lines = [];
     const clean = (text || 'TCL').toUpperCase().slice(0, 10);
     
@@ -19,16 +18,15 @@ export default function LabExperiments() {
     lines.push(`+----------------------------------------+`);
     lines.push(``);
     
-    // Simple custom block art representation
     let banner = '';
     for (let char of clean) {
       banner += ` [${char}] `;
     }
     lines.push(`    ${banner}`);
     lines.push(``);
-    lines.push(`    >> SIGNAL FREQ : 108.4 MHz`);
-    lines.push(`    >> BUFFER STATE: OPTIMAL [100%]`);
-    lines.push(`    >> HASH VALUE  : 0x7F9A_4B2C_00E1`);
+    lines.push(`    >> CHANNEL : THE CHUD LAB FORGE`);
+    lines.push(`    >> STATUS  : LIVE EXPERIMENTATION`);
+    lines.push(`    >> STAMP   : 0x7F9A_CHUD_2026`);
     lines.push(`+----------------------------------------+`);
     setAsciiOutput(lines.join('\n'));
   };
@@ -37,7 +35,7 @@ export default function LabExperiments() {
     generateAscii(asciiInput);
   }, [asciiInput]);
 
-  // Interactive Particle Grid Canvas
+  // Interactive Canvas
   useEffect(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
@@ -72,7 +70,6 @@ export default function LabExperiments() {
       ctx.fillStyle = '#0f0f12';
       ctx.fillRect(0, 0, width, height);
 
-      // Draw subtle retro grid
       ctx.strokeStyle = '#1e1e24';
       ctx.lineWidth = 1;
       const step = 25;
@@ -89,7 +86,6 @@ export default function LabExperiments() {
         ctx.stroke();
       }
 
-      // Draw particles & links
       ctx.strokeStyle = '#383842';
       particles.forEach((p, idx) => {
         p.x += p.vx;
@@ -98,7 +94,6 @@ export default function LabExperiments() {
         if (p.x < 0 || p.x > width) p.vx *= -1;
         if (p.y < 0 || p.y > height) p.vy *= -1;
 
-        // Interactive mouse gravity
         const dx = mouseX - p.x;
         const dy = mouseY - p.y;
         const dist = Math.sqrt(dx * dx + dy * dy);
@@ -110,7 +105,6 @@ export default function LabExperiments() {
         ctx.fillStyle = '#f4f3ef';
         ctx.fillRect(p.x - p.size / 2, p.y - p.size / 2, p.size, p.size);
 
-        // Connect nearby particles
         for (let j = idx + 1; j < particles.length; j++) {
           const p2 = particles[j];
           const d = Math.hypot(p.x - p2.x, p.y - p2.y);
@@ -138,26 +132,26 @@ export default function LabExperiments() {
     {
       id: 'note-01',
       date: 'OCT 08, 2026 // 03:14 AM',
-      tag: 'SYSTEMS',
-      title: 'REWRITING CORE DAEMON IN RUST',
-      body: 'Decided at 3am that saving 4.2MB of RAM and 12ms of latency was worthy of an entire architecture rewrite. It compiles now with zero warnings.',
+      tag: 'TECH LOG',
+      title: 'FIRST PROTOTYPE BUILD SETUP',
+      body: 'Setting up the multi-angle recording rig for YouTube. Decided that rather than editing out all my mistakes and debug loops, I will leave the honest struggle in the video.',
       mood: '☕ MAXIMUM CAFFEINE',
     },
     {
       id: 'note-02',
       date: 'OCT 04, 2026 // 11:45 PM',
       tag: 'HARDWARE',
-      title: 'RP2040 CUSTOM PCB FABRICATION',
-      body: 'Dual rotary encoders tested on breadboard. The tactile click of metal ALPS encoders is unmatched. Ready to send Gerbers to fab.',
+      title: 'CUSTOM MICRO-CONTROLLER TEST',
+      body: 'Breadboarding dual rotary encoders and testing tactile response. Soldering in the middle of the night has a therapeutic quality that daylight just cannot replicate.',
       mood: '⚡ SOLDER FUMES',
     },
     {
       id: 'note-03',
       date: 'SEP 28, 2026 // 06:20 PM',
       tag: 'PHILOSOPHY',
-      title: 'THE INEVITABILITY OF OVER-ENGINEERING',
-      body: 'Why build a normal landing page when you can simulate cassette J-card tape physics, grain scanlines, and audio bandpass synthesis? Exactly.',
-      mood: '🌀 HIGH CRAFT',
+      title: 'BEATING PROCRASTINATION BY SHIPPING',
+      body: 'The only cure to overthinking a project for months is committing to publish the video and source repository. Perfectionism is the enemy of building.',
+      mood: '🌀 HIGH FOCUS',
     },
   ];
 
@@ -168,13 +162,13 @@ export default function LabExperiments() {
       <div className="flex flex-col md:flex-row md:items-end justify-between border-b-2 border-black pb-4 mb-8 gap-4">
         <div>
           <div className="flex items-center gap-2 text-xs font-bold text-neutral-500 uppercase tracking-widest">
-            <span>TRACK [03]</span>
+            <span>TRACK [04]</span>
             <span>•</span>
             <SparkleStar className="w-3.5 h-3.5 text-black" />
-            <span>LAB LOGS & MICRO EXPERIMENTS</span>
+            <span>DEV NOTES & EXPERIMENTS</span>
           </div>
-          <h2 className="text-3xl sm:text-4xl font-extrabold text-black font-['Syne'] uppercase mt-1 tracking-tight">
-            LAB EXPERIMENTS & RANDOM BUILDS
+          <h2 className="text-3xl sm:text-5xl font-extrabold text-black font-['Instrument_Serif'] uppercase mt-1 tracking-tight">
+            LAB EXPERIMENTS & LOGS
           </h2>
         </div>
 
@@ -199,7 +193,7 @@ export default function LabExperiments() {
           }`}
         >
           <Code2 className="w-3.5 h-3.5" />
-          <span>LAB DISPATCHES ({labNotes.length})</span>
+          <span>CREATOR DEV LOGS ({labNotes.length})</span>
         </button>
 
         <button
@@ -280,14 +274,14 @@ export default function LabExperiments() {
             <div>
               <div className="flex items-center justify-between border-b border-black/20 pb-2 mb-3">
                 <span className="text-xs font-bold text-black uppercase">
-                  ASCII SIGNAL ENCODER
+                  ASCII TEXT MATRIX ENCODER
                 </span>
                 <SparkleStar className="w-3.5 h-3.5 text-black" />
               </div>
 
               <div className="mb-3">
                 <label className="text-[10px] font-bold text-neutral-600 uppercase block mb-1">
-                  TYPE INPUT STRING:
+                  TYPE INPUT TEXT:
                 </label>
                 <input
                   type="text"
@@ -318,7 +312,7 @@ export default function LabExperiments() {
           <div className="flex items-center gap-2">
             <Wrench className="w-3.5 h-3.5 text-black" />
             <span className="text-xs font-bold uppercase tracking-wider text-black">
-              LAB ARSENAL // TOOLCHAIN IN USE
+              LAB TOOLCHAIN & STACK
             </span>
           </div>
           <span className="text-[10px] text-neutral-500 uppercase">
@@ -327,7 +321,7 @@ export default function LabExperiments() {
         </div>
 
         <div className="flex flex-wrap gap-2">
-          {['RUST', 'REACT', 'TAILWIND CSS', 'TYPESCRIPT', 'WEBGPU', 'NEOVIM', 'PYTHON', 'RP2040', 'KICAD', 'GO', 'WEBRTC', 'ARCH LINUX', 'GLSL SHADERS'].map((tool) => (
+          {['REACT', 'TAILWIND CSS', 'YOUTUBE STUDIO', 'DAVINCI RESOLVE', 'TYPESCRIPT', 'PYTHON', 'RUST', 'RP2040', 'KICAD', 'OBS STUDIO', 'NEOVIM', 'GLSL SHADERS'].map((tool) => (
             <span
               key={tool}
               className="text-[10px] font-bold px-3 py-1 bg-[#f4f3ee] text-black border border-black hover:bg-black hover:text-white transition-colors cursor-default"

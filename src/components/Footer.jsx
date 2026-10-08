@@ -26,7 +26,7 @@ export default function Footer() {
             </div>
             
             <p className="text-xs text-neutral-400 font-['JetBrains_Mono'] leading-relaxed max-w-sm mb-4">
-              A private digital forge and subculture archive for experimental systems, custom hardware controllers, web shaders, and random tech creations.
+              A creator hub and digital workshop turning lazy hours into shipped tech projects, deep-dive YouTube videos, bite-sized reels, and open documentation.
             </p>
 
             <div className="flex items-center gap-2">
@@ -34,7 +34,7 @@ export default function Footer() {
                 **NOT AN EXHAUSTIVE LIST
               </span>
               <span className="text-[10px] bg-neutral-900 border border-neutral-700 px-2 py-1 text-neutral-300">
-                TCL-SYS-V0.1
+                TCL-CREATOR-V0.1
               </span>
             </div>
           </div>
@@ -50,25 +50,31 @@ export default function Footer() {
               <li>
                 <a href="#projects" className="hover:text-white transition-colors flex items-center gap-2">
                   <span className="text-neutral-600">[01]</span>
-                  <span>PROJECT WORKS (COMING SOON)</span>
+                  <span>PROJECT WORKS & VIDEOS</span>
+                </a>
+              </li>
+              <li>
+                <a href="#manifesto" className="hover:text-white transition-colors flex items-center gap-2">
+                  <span className="text-neutral-600">[02]</span>
+                  <span>ORIGIN & THE CHUD MANIFESTO</span>
                 </a>
               </li>
               <li>
                 <a href="#socials" className="hover:text-white transition-colors flex items-center gap-2">
-                  <span className="text-neutral-600">[02]</span>
-                  <span>SOCIAL TRANSMISSIONS & SIGNAL</span>
+                  <span className="text-neutral-600">[03]</span>
+                  <span>COMMUNITY & SOCIAL CHANNELS</span>
                 </a>
               </li>
               <li>
                 <a href="#experiments" className="hover:text-white transition-colors flex items-center gap-2">
-                  <span className="text-neutral-600">[03]</span>
-                  <span>LAB EXPERIMENTS & NOTES</span>
+                  <span className="text-neutral-600">[04]</span>
+                  <span>LAB EXPERIMENTS & LOGS</span>
                 </a>
               </li>
               <li>
                 <a href="#signal" className="hover:text-white transition-colors flex items-center gap-2">
-                  <span className="text-neutral-600">[04]</span>
-                  <span>TRANSMIT SIGNAL / NOTIFICATIONS</span>
+                  <span className="text-neutral-600">[05]</span>
+                  <span>DROP ALERTS & NOTIFICATIONS</span>
                 </a>
               </li>
             </ul>
@@ -82,7 +88,7 @@ export default function Footer() {
 
             <button
               onClick={scrollToTop}
-              className="mt-6 px-4 py-2 border border-neutral-700 bg-neutral-900 hover:bg-white hover:text-black transition-all text-xs font-bold uppercase flex items-center gap-2"
+              className="mt-6 px-4 py-2 border border-neutral-700 bg-neutral-900 hover:bg-white hover:text-black transition-all text-xs font-bold uppercase flex items-center gap-2 shadow-[2px_2px_0px_0px_rgba(255,255,255,0.2)]"
             >
               <span>RETURN TO TOP</span>
               <ArrowUp className="w-3.5 h-3.5" />
@@ -94,7 +100,7 @@ export default function Footer() {
         {/* Bottom Rights & Cursive Signoff */}
         <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-neutral-500">
           <div className="flex items-center gap-2">
-            <span>© 2026 THE CHUD LAB. ALL RIGHTS RESERVED.</span>
+            <span>© 2026 THE CHUD LAB. ALL EXPERIMENTS OPEN FOR EXPLORATION.</span>
           </div>
 
           <div className="font-['Caveat'] text-lg text-neutral-300 tracking-wide">
@@ -102,9 +108,9 @@ export default function Footer() {
           </div>
 
           <div className="flex items-center gap-2 text-[10px]">
-            <span>STEREOPHONIC SOUND</span>
+            <span>EST. 2026</span>
             <span>•</span>
-            <span>DOLBY NOISE REDUCTION</span>
+            <span>BUILD IN PUBLIC</span>
           </div>
         </div>
 
