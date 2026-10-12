@@ -61,8 +61,8 @@ export default function TextureOverlay({ crtEnabled, setCrtEnabled }) {
 
   return (
     <>
-      {/* SVG Grain Noise Filter Overlay */}
-      <svg className="fixed inset-0 w-full h-full pointer-events-none opacity-20 z-40" aria-hidden="true">
+      {/* Subtle Tactile Grain Filter Overlay */}
+      <svg className="fixed inset-0 w-full h-full pointer-events-none opacity-[0.06] z-40" aria-hidden="true">
         <filter id="noiseFilter">
           <feTurbulence type="fractalNoise" baseFrequency="0.85" numOctaves="3" stitchTiles="stitch" />
           <feColorMatrix type="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 0.15 0" />

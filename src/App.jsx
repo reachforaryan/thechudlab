@@ -50,7 +50,18 @@ export default function App() {
   };
 
   return (
-    <div className="min-h-screen bg-[#f2f1ec] text-[#111111] relative selection:bg-black selection:text-white flex flex-col justify-between">
+    <div className="min-h-screen bg-paper-canvas text-[#111111] relative selection:bg-black selection:text-white flex flex-col justify-between">
+      {/* Subtle Archival Corner Registration Accents */}
+      <div className="fixed top-2 left-2 text-[10px] text-neutral-400 font-mono select-none pointer-events-none z-10 hidden sm:block opacity-40">
+        + 01.A
+      </div>
+      <div className="fixed top-2 right-2 text-[10px] text-neutral-400 font-mono select-none pointer-events-none z-10 hidden sm:block opacity-40">
+        TCL-SPEC +
+      </div>
+      <div className="fixed bottom-2 left-2 text-[10px] text-neutral-400 font-mono select-none pointer-events-none z-10 hidden sm:block opacity-40">
+        + ARCHIVE
+      </div>
+
       {/* Texture & Ambient Noise Overlay */}
       <TextureOverlay crtEnabled={crtEnabled} setCrtEnabled={setCrtEnabled} />
 

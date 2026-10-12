@@ -36,7 +36,7 @@ export default function Header({ currentSide, setCurrentSide, activeSection, set
   ];
 
   return (
-    <header className="sticky top-0 z-30 bg-[#f2f1ec] text-[#111111] border-b-2 border-black font-mono transition-colors">
+    <header className="sticky top-0 z-30 bg-[#f2f1ec]/95 backdrop-blur-md text-[#111111] border-b-2 border-black font-mono transition-colors">
       {/* Top Ticker Bar */}
       <div className="bg-black text-[#f4f3ef] text-[10px] tracking-widest py-1 overflow-hidden border-b border-black flex items-center">
         <div className="animate-marquee whitespace-nowrap flex items-center gap-8 font-mono">
